@@ -1,2 +1,2 @@
 # python-mongodb-projects
-Contains project that uses MongoDB as backend database using Python
+Contains projects that uses Flask MongoDB as backend database using Python
