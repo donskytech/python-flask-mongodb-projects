@@ -1,0 +1,86 @@
+{% extends 'base.html'%} {% block title %} Home {% endblock %} {% block content
+%}
+<div class="container mt-5 mb-5 px-10">
+  <h3>Students List</h3>
+  <form method="POST" action="/search-student">
+    <div class="row">
+      <div
+        class="d-flex flex-row mb-3 justify-content-center gap-2 border p-2 rounded"
+      >
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Student ID"
+            aria-label="Student ID"
+            name="student_id"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Last name"
+            aria-label="Last name"
+            name="last_name"
+          />
+        </div>
+        <div>
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+
+        <div>
+          <a class="btn btn-primary" href="/add-student" role="button"
+            >Add Student</a
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row table-responsive" style="height: 50vh">
+    {% if (students is defined) and students %}
+    <div class="table-responsive" style="overflow-x: auto; overflow-y: auto">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Student ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+          <tr>
+            <th scope="row">{{ student['student_id'] }}</th>
+            <td>{{ student['first_name'] }}</td>
+            <td>{{ student['last_name'] }}</td>
+            <td>{{ student['middle_name'] }}</td>
+            <td>
+              <div class="d-flex justify-content-center gap-2">
+                <a
+                  class="btn btn-primary"
+                  href="/edit-student?_id={{ student['_id'] }}"
+                  role="button"
+                  >Edit</a
+                ><a
+                  class="btn btn-primary"
+                  href="/delete-student?_id={{ student['_id'] }}"
+                  role="button"
+                  >Delete</a
+                >
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <h4 class="text-warning">No student(s) matched your search criteria</h4>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
