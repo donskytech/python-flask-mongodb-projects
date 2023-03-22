@@ -3,7 +3,7 @@
 # Steps on how to run  
 1.  Clone the repository using the below command  
 ```
-git clone https://github.com/donskytech/python-mongodb-projects.git
+git clone https://github.com/donskytech/python-flask-mongodb-projects.git
 ```  
 2. Change into the project directory
 ```
