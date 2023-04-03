@@ -1,5 +1,10 @@
 
 # Writeup  
+
+  
+# Prerequisites  
+1.  Create a MongoDB Atlas cluster.
+2.  Create a database called sensors_db with a collection sensors  
   
 # Steps on how to run  
 1.  Clone the repository using the below command  
