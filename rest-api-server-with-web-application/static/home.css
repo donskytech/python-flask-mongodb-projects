@@ -1,0 +1,28 @@
+.page-wrapper {
+  min-height: 100vh;
+}
+.wrapper--w900 {
+  max-width: 900px;
+}
+.wrapper {
+  margin: 0 auto;
+}
+
+.form-labels {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.form-check-input {
+  font-size: 1.5rem;
+}
+.relay-label {
+  font-size: 1.2rem;
+}
+
+.readings-icon,
+.readings-text {
+  font-size: 1.5rem;
+}
+.readings-text {
+  margin-left: 10px;
+}

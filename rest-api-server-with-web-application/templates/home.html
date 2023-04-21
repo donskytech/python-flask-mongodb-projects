@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+    <title>Sensor Management System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand">Sensors Management System</a>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto">
+            <a href="#" class="nav-item nav-link active">Home</a>
+            <a href="#" class="nav-item nav-link">About</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid bg-dark">
+      <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900 p-5">
+          <div class="card">
+            <div class="card-header">
+              <h2>Control Arduino Components from Database</h2>
+            </div>
+            <div class="card-body">
+              {% for sensor in sensors %} {% if sensor.type == 'LED' %}
+              <div class="row border-bottom p-2">
+                <div
+                  class="form-row col-6 text-end form-labels pe-5 text-nowrap"
+                >
+                  LED
+                </div>
+                <div class="col-6">
+                  <div class="ms-4">
+                    <div class="form-check form-switch">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="ledSwitch"
+                        data-objectid="{{ sensor._id }}"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% elif sensor.type == 'RELAY' %}
+              <div class="row border-bottom p-2">
+                <div
+                  class="form-row col-6 text-end form-labels pe-5 text-nowrap"
+                >
+                  Relay
+                </div>
+                <div class="d-flex flex-column col-6">
+                  {% for key, value in sensor["values"].items() %}
+                  <div class="form-check form-switch ms-4">
+                    <input class="form-check-input relay-switch" type="checkbox"
+                    id="relay-switch-{{key}}" data-key="{{key}}"
+                    data-objectid="{{ sensor._id }}" {% if value == "LOW" %}
+                    checked {% endif %} />
+                    <label
+                      class="form-check-label relay-label text-nowrap"
+                      for="flexSwitchCheckDefault"
+                      >{{key.capitalize()}}</label
+                    >
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% elif sensor.type == 'DHT' %}
+              <div class="row border-bottom p-2">
+                <div
+                  class="form-row col-6 text-end form-labels pe-5 text-nowrap"
+                >
+                  DHT22
+                </div>
+                <div class="d-flex flex-column col-6">
+                  <div class="d-flex dht-readings">
+                    <i class="bi bi-thermometer-half readings-icon"></i>
+                    <p class="readings-text">
+                      <strong id="dht-temp-value">0</strong> &#8451;
+                    </p>
+                  </div>
+                  <div class="d-flex dht-readings">
+                    <i class="bi bi-moisture readings-icon"></i>
+                    <p class="readings-text">
+                      <strong id="dht-humidity-value">0</strong> %
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {% else %}
+              <p>Sensor Not Found!</p>
+              {% endif %} {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <hr />
+          <p class="text-center">Sensors Management System</p>
+          <p class="text-center">
+            &copy; Copyright 2023 <strong>https://www.donskytech.com</strong>
+          </p>
+        </footer>
+      </div>
+    </div>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+  </body>
+</html>
