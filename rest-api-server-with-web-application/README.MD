@@ -6,6 +6,7 @@
 # Prerequisites  
 1.  Create a MongoDB Atlas cluster.
 2.  Create a database called sensors_db with a collection sensors  
+3.  Prepare your database by adding the sample records in your collection. Please see the writeup.  
   
 # Steps on how to run  
 1.  Clone the repository using the below command  
