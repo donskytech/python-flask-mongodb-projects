@@ -1,11 +1,12 @@
 
 # Writeup  
-https://www.donskytech.com/create-a-rest-api-server-with-python-flask-and-mongodb/  
+<Ongoing from www.donskytech.com>
   
 ![Featured Image - Python Flask MongoDB REST API Server](https://user-images.githubusercontent.com/69466026/229530573-a7762815-af49-4c99-86e1-c46cb20ace00.jpg)
 # Prerequisites  
 1.  Create a MongoDB Atlas cluster.
 2.  Create a database called sensors_db with a collection sensors  
+3.  Prepare your database by adding the sample records in your collection. Please see the writeup.  
   
 # Steps on how to run  
 1.  Clone the repository using the below command  
@@ -14,7 +15,7 @@ git clone https://github.com/donskytech/python-flask-mongodb-projects.git
 ```  
 2. Change into the project directory
 ```
-cd rest-api-server
+cd rest-api-server-with-web-application
 ```
 3. Open the project in Visual Studio Code and then open a new terminal.  Create a virtual environment using the below command
 ```
