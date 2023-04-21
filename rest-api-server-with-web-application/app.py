@@ -16,9 +16,11 @@ db = client["sensors_db"]
 """
 Web Application
 """
+
+
 @app.route("/")
 def index():
-    sensors = list(db.sensors.find({}))
+    sensors = list(db.sensors.find({})) #.sort("sensor_id", 1))
     print(sensors)
     return render_template("home.html", sensors=sensors)
 
@@ -26,6 +28,8 @@ def index():
 """
 REST API Codes
 """
+
+
 @app.get("/api/sensors")
 def get_sensors():
     sensor_id = request.args.get("sensor_id")

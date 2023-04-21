@@ -41,83 +41,70 @@
         </div>
       </div>
     </nav>
-    <div class="container-fluid bg-dark">
-      <div class="page-wrapper bg-dark p-t-100 p-b-50">
-        <div class="wrapper wrapper--w900 p-5">
-          <div class="card">
-            <div class="card-header">
-              <h2>Control Arduino Components from Database</h2>
+    <div class="container">
+      <div class="col-sm-12 col-xs-12 mt-4 border">
+        <div class="card">
+          <div class="card-header">
+            <h2>Remote Control Electronic Circuits with Database</h2>
+          </div>
+          <div class="card-body">
+            {% for sensor in sensors %} {% if sensor.type == 'LED' %}
+            <div class="row border-bottom p-2">
+              <div class="form-row col-6 text-end form-labels pe-5">LED</div>
+              <div class="col-6">
+                <div class="ms-4">
+                  <div class="form-check form-switch">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="ledSwitch"
+                      data-objectid="{{ sensor._id }}"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              {% for sensor in sensors %} {% if sensor.type == 'LED' %}
-              <div class="row border-bottom p-2">
-                <div
-                  class="form-row col-6 text-end form-labels pe-5 text-nowrap"
-                >
-                  LED
+            {% elif sensor.type == 'RELAY' %}
+            <div class="row border-bottom p-2">
+              <div class="form-row col-6 text-end form-labels pe-5">Relay</div>
+              <div class="d-flex flex-column col-6">
+                {% for key, value in sensor["values"].items() %}
+                <div class="form-check form-switch ms-4">
+                  <input class="form-check-input relay-switch" type="checkbox"
+                  id="relay-switch-{{key}}" data-key="{{key}}" data-objectid="{{
+                  sensor._id }}" {% if value == "LOW" %} checked {% endif %} />
+                  <label
+                    class="form-check-label relay-label"
+                    for="flexSwitchCheckDefault"
+                    >{{key.capitalize()}}</label
+                  >
                 </div>
-                <div class="col-6">
-                  <div class="ms-4">
-                    <div class="form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="ledSwitch"
-                        data-objectid="{{ sensor._id }}"
-                      />
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
-              {% elif sensor.type == 'RELAY' %}
-              <div class="row border-bottom p-2">
-                <div
-                  class="form-row col-6 text-end form-labels pe-5 text-nowrap"
-                >
-                  Relay
-                </div>
-                <div class="d-flex flex-column col-6">
-                  {% for key, value in sensor["values"].items() %}
-                  <div class="form-check form-switch ms-4">
-                    <input class="form-check-input relay-switch" type="checkbox"
-                    id="relay-switch-{{key}}" data-key="{{key}}"
-                    data-objectid="{{ sensor._id }}" {% if value == "LOW" %}
-                    checked {% endif %} />
-                    <label
-                      class="form-check-label relay-label text-nowrap"
-                      for="flexSwitchCheckDefault"
-                      >{{key.capitalize()}}</label
-                    >
-                  </div>
-                  {% endfor %}
-                </div>
-              </div>
-              {% elif sensor.type == 'DHT' %}
-              <div class="row border-bottom p-2">
-                <div
-                  class="form-row col-6 text-end form-labels pe-5 text-nowrap"
-                >
-                  DHT22
-                </div>
-                <div class="d-flex flex-column col-6">
-                  <div class="d-flex dht-readings">
-                    <i class="bi bi-thermometer-half readings-icon"></i>
-                    <p class="readings-text">
-                      <strong id="dht-temp-value">0</strong> &#8451;
-                    </p>
-                  </div>
-                  <div class="d-flex dht-readings">
-                    <i class="bi bi-moisture readings-icon"></i>
-                    <p class="readings-text">
-                      <strong id="dht-humidity-value">0</strong> %
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {% else %}
-              <p>Sensor Not Found!</p>
-              {% endif %} {% endfor %}
             </div>
+            {% elif sensor.type == 'DHT' %}
+            <div class="row border-bottom p-2">
+              <div class="form-row col-6 text-end form-labels pe-5 text-nowrap">
+                DHT22
+              </div>
+              <div class="d-flex flex-column col-6">
+                <div class="d-flex dht-readings">
+                  <i class="bi bi-thermometer-half readings-icon"></i>
+                  <p class="readings-text">
+                    <strong id="dht-temp-value">0</strong> &#8451;
+                  </p>
+                </div>
+                <div class="d-flex dht-readings">
+                  <i class="bi bi-moisture readings-icon"></i>
+                  <p class="readings-text">
+                    <strong id="dht-humidity-value">0</strong> %
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <p>Sensor Not Found!</p>
+            {% endif %} {% endfor %}
           </div>
         </div>
 
