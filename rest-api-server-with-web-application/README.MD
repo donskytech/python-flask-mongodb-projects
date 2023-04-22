@@ -1,8 +1,8 @@
 
 # Writeup  
-<Ongoing from www.donskytech.com>
+https://www.donskytech.com/develop-custom-iot-web-application-with-mongodb-database/
   
-![Featured Image - Python Flask MongoDB REST API Server](https://user-images.githubusercontent.com/69466026/229530573-a7762815-af49-4c99-86e1-c46cb20ace00.jpg)
+![Featured Image - Develop Custom IoT Web Application with MongoDB Database](https://user-images.githubusercontent.com/69466026/233770856-3865fd20-4d35-4e30-8869-6edd4b2ddb74.jpg)
 # Prerequisites  
 1.  Create a MongoDB Atlas cluster.
 2.  Create a database called sensors_db with a collection sensors  
