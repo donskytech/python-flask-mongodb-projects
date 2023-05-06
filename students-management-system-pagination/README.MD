@@ -21,7 +21,7 @@ python -m venv .venv
 # Windows
 .\.venv\Scripts\activate
 # Linux
-source .venv\bin\activate
+source .venv/bin/activate
 ```
 5. Install the dependencies
 ```
